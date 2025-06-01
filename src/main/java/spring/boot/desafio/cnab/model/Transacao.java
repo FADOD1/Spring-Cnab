@@ -115,5 +115,4 @@ public class Transacao {
         this.nomeLoja = nomeLoja;
     }
 
-
 }

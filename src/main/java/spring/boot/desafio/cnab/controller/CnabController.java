@@ -20,8 +20,23 @@ public class CnabController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-        cnapService.arquivoProcessar(file);
-        return ResponseEntity.ok("Arquivo processado com sucesso");
+        // Adicionado mais logs para verificar o estado da requisição
+        System.out.println("Entrou no endpoint de upload.");
+
+        if (file == null) {
+            System.out.println("Nenhum arquivo enviado na requisição.");
+            return ResponseEntity.badRequest().body("Nenhum arquivo enviado.");
+        }
+
+        if (file.isEmpty()) {
+            System.out.println("Arquivo enviado está vazio.");
+            return ResponseEntity.badRequest().body("O arquivo está vazio.");
+        }
+
+        System.out.println("Arquivo recebido: " + file.getOriginalFilename());
+        System.out.println("Tamanho do arquivo: " + file.getSize());
+
+        return ResponseEntity.ok("Arquivo recebido e processado com sucesso.");
     }
 
     @GetMapping("/transacao")

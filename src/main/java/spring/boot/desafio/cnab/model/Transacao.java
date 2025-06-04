@@ -115,4 +115,8 @@ public class Transacao {
         this.nomeLoja = nomeLoja;
     }
 
+    @Override
+    public String toString() {
+        return tipo+natureza+sinal+data+valor+cpf+cartao+hora+donoLoja+nomeLoja;
+    }
 }
